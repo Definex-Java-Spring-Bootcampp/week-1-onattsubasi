@@ -1,9 +1,4 @@
-import main.java.managers.ApplicationManager;
-import main.java.managers.BankManager;
-import main.java.managers.CampaignManager;
-import main.java.managers.CreditCardManager;
-import main.java.managers.LoanManager;
-import main.java.managers.UserManager;
+import main.java.managers.*;
 import main.java.model.*;
 
 import java.math.BigDecimal;
@@ -65,5 +60,23 @@ public class App {
 
         //spesifik mail adresinin ship oldugu basvurular
         System.out.println(userManager.getApplicationsByUser(user4.getEmail()));
+
+
+
+        CustomerManager customerManager = new CustomerManager();
+        BillManager billManager = new BillManager();
+        OrderManager orderManager = new OrderManager();
+        GoodsManager goodsManager = new GoodsManager();
+
+        Customer customer1 = customerManager.createCustomer("Ahmet", "Yilmaz", LocalDate.of(1991,1,7), "ahmetyilmaz", "password123" ,"5428324321", true);
+        Goods goods1 = goodsManager.createGoods("goods1", new BigDecimal(100), 10, "category1");
+        Goods goods2 = goodsManager.createGoods("goods2", new BigDecimal(200), 20, "category2");
+        Goods goods3 = goodsManager.createGoods("goods3", new BigDecimal(300), 30, "category3");
+        List<Goods> goodsList = List.of(goods1, goods2, goods3);
+        Bill bill1 = billManager.createBill("bill1", customer1, new BigDecimal(500), goodsList, LocalDate.of(2021, 3, 15));
+        Order order1 = orderManager.creatOrder("order1", customer1, goodsList, LocalDate.of(2021, 3, 15), bill1);
+        System.out.println(orderManager.getOrderList());
+
+
     }
 }

@@ -27,7 +27,6 @@ public class UserManager {
     public synchronized User createUser(String name, String surname, LocalDate birthDate, String email, String password, String phoneNumber, Boolean isActive) {
         if(emailExists(email)) {
             System.out.println("This email is already registered.");
-            return null;
         }
         User temp = new User(name, surname, birthDate, email, password, phoneNumber, isActive);
        
